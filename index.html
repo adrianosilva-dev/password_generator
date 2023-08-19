@@ -11,27 +11,48 @@
     <p>Use the online generator to secure your content!</p>
     <input type="text" name="password" id="password">
     <input type="range" name="password-length" id="password-length" value="8" min="4" max="16">
-    <button>Copy password</button>
+    <button id="copyButton">Copy password</button>
 
     <script>
-        // função de criação de password (password function creat)
+        // variavel global, para poder recuperar no range do passwordGenerator(global variable, to be able to recover in the passwordGenerator range)
+        let passwordRange = 8
+
+        // recuperando o valor do password (recovering password value)
+        const inputEL = document.querySelector("#password")
+
+        // função de criação de password (password creation function)
         function generatePassword() {
             // caracteres que serão usados na senha (characters that will be used in the password)
             const chars = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ0123456789?!@#$%&*()[]"
             // variavel que vai receber o password (variable that will receive the password)
             let password = ""
             // Gerando o password randomicamente (randomly generating password)
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < passwordRange; i++) {
                 const randomNumber = Math.floor(Math.random() * chars.length)
                 password += chars.substring(randomNumber, randomNumber + 1)
             }
             // adicionando o password dentro do input text (adding the password inside the input text)
-            const inputEL = document.querySelector("#password")
             inputEL.value = password
-
-            console.log(password)
             }
 
+        // função de copiar o password (password copy function)
+        function copy () {
+            navigator.clipboard.writeText(inputEL.value)
+        }
+
+
+        // função range e atualização dos valores dentro do input (range function and update of values ​​inside the input)
+        const passwordRangeEl = document.querySelector("#password-length")
+        passwordRangeEl.addEventListener("input", function() {
+            passwordRange = passwordRangeEl.value
+            generatePassword()
+        })
+
+        // evento de copiar (copy event)
+        const copyActionButton = document.querySelector("#copyButton")
+        copyActionButton.addEventListener("click", copy)
+
+        // chamando a função de gerar password (calling the generate function password)
         generatePassword()
     </script>
 </body>
