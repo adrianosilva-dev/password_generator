@@ -4,14 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Configurações "reset"*/
+        * {
+            box-sizing: border-box;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+        }
+        * img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
     <!-- Elementos básicos do HTML (HTML basics elements) -->
-    <h1>Passowrd Generator</h1>
-    <p>Use the online generator to secure your content!</p>
-    <input type="text" name="password" id="password">
-    <input type="range" name="password-length" id="password-length" value="8" min="4" max="16">
-    <button id="copyButton">Copy password</button>
+    <main>
+        <section class="hero">
+            <h1 class= "title">Passowrd Generator</h1>
+            <p class="subtitle">Use the online generator to secure your content!</p>
+        </section>
+
+        <section class="box">
+            <div class="password">
+                <div class="text">
+                    <input type="text" name="password" id="password">
+                </div>
+                
+                <div class="action">
+                    <button id="copy2">C</button>
+                    <button id="renew">R</button>
+                </div>
+            </div>
+        </section>
+
+        <input type="range" name="password-length" id="password-length" value="8" min="4" max="16">
+        <button id="copyButton">Copy password</button>
+    </main>
 
     <script>
         // variavel global, para poder recuperar no range do passwordGenerator(global variable, to be able to recover in the passwordGenerator range)
