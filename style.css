@@ -95,3 +95,70 @@ main{
 .security-indicator .bar.safe {
     background-color: #27ae60;
 }
+
+.customize {
+    padding: 1rem 1.5rem;
+}
+
+.customize .title {
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+}
+
+.customize .actions {
+    display: flex;
+    gap: 3rem;
+    color: #828282;
+}
+.customize .password-length {
+    flex: 1;
+}
+
+.customize .password-length .slider{
+    appearance: none;
+    -webkit-appearance: none;
+    height: 10px;
+    background: #dddddd;
+    outline: none;
+    border-radius: 8px;
+    width: 100%;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    margin-top: 1rem;
+}
+
+.customize .password-length .slider:hover{
+    opacity: 1;
+}
+
+.customize .password-length .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    background: #9b51e0;
+    cursor: pointer;
+}
+
+.customize .password-length .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    background: #9b51e0;
+    cursor: pointer;
+}
+
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
