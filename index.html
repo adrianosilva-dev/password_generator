@@ -70,7 +70,9 @@
             </div>
         </section>
 
-        <button id="copyButton">Copy password</button>
+        <div class="subimit">
+            <button id="copyButton">Copy password</button>
+        </div>
     </main>
 
     <script>
@@ -80,12 +82,34 @@
         // recuperando o valor do password (recovering password value)
         const inputEL = document.querySelector("#password")
 
+        // recuperando os valores dos checkbox (recovering checkbox value)
+        const upperCaseCheckEl = document.querySelector("#uppercase-check")
+        const numberCaseCheckEl = document.querySelector("#number-check")
+        const symbolsCaseCheckEl = document.querySelector("#symbols-check")
+
+
         // função de criação de password (password creation function)
         function generatePassword() {
             // caracteres que serão usados na senha (characters that will be used in the password)
-            const chars = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ0123456789?!@#$%&*()[]"
+            let chars = "abcdefghijklmnpqrstuvwxyz"
+            const upperCaseChars = "ABCDEFGHIJKLMNPQRSTUVWXYZ"
+            const numberCaseChars = "0123456789"
+            const symbolsCaseChars = "?!@#$%&*()[]"
+
             // variavel que vai receber o password (variable that will receive the password)
             let password = ""
+
+            // criando as condições "IF" ("IF" conditions)
+            if (upperCaseCheckEl.checked) {
+                chars += upperCaseChars
+            }
+            if (numberCaseCheckEl.checked) {
+                chars += numberCaseChars
+            }
+            if (symbolsCaseCheckEl.checked) {
+                chars += symbolsCaseChars
+            }
+
             // Gerando o password randomicamente (randomly generating password)
             for (let i = 0; i < passwordRange; i++) {
                 const randomNumber = Math.floor(Math.random() * chars.length)
@@ -107,6 +131,11 @@
             passwordRange = passwordRangeEl.value
             generatePassword()
         })
+
+        // criando o evento "click" ("click" event)
+        upperCaseCheckEl.addEventListener("click", generatePassword)
+        numberCaseCheckEl.addEventListener("click", generatePassword)
+        symbolsCaseCheckEl.addEventListener("click", generatePassword)
 
         // evento de copiar (copy event)
         // const copyActionButton = document.querySelector("#copyButton")
