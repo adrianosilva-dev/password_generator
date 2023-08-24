@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="security-indicator">
-                <div id="security-indicator-bar" class="bar" style="width: 90%">
+                <div id="security-indicator-bar" class="bar safe">
                 </div>
             </div>
         </section>
@@ -47,7 +47,7 @@
             <h3 class="title">Security Level</h3>
             <div class="actions">
                 <div class="password-length">
-                    <p>Length: <span id="password-length-text">16</span></p>
+                    <p>Length: <span id="password-length-text">8</span></p>
                     <input type="range" class="slider" name="password-length" id="password-length" value="8" min="4" max="16">
                 </div>
                 <div class="config-checkbox">
@@ -86,6 +86,7 @@
         const upperCaseCheckEl = document.querySelector("#uppercase-check")
         const numberCaseCheckEl = document.querySelector("#number-check")
         const symbolsCaseCheckEl = document.querySelector("#symbols-check")
+        const securityIndicatorBarEL = document.querySelector("#security-indicator-bar")
 
 
         // função de criação de password (password creation function)
@@ -117,6 +118,18 @@
             }
             // adicionando o password dentro do input text (adding the password inside the input text)
             inputEL.value = password
+
+            calculateQuality()
+            }
+
+
+            // funão de ajuste da barra de acordo com o "nivel" de segurança da senha (bar adjustment function according to password security "level")
+            function calculateQuality () {
+                const percent = Math.round((passwordRange / 16)*15 
+                + (upperCaseCheckEl.checked ? 15 : 0)
+                + (numberCaseCheckEl.checked ? 30 : 0)
+                + (symbolsCaseCheckEl.checked ? 40 : 0))
+                securityIndicatorBarEL.style.width = `${percent}%`
             }
 
         // função de copiar o password (password copy function)
@@ -129,6 +142,7 @@
         const passwordRangeEl = document.querySelector("#password-length")
         passwordRangeEl.addEventListener("input", function() {
             passwordRange = passwordRangeEl.value
+            document.querySelector("#password-length-text").innerText = passwordRange
             generatePassword()
         })
 
