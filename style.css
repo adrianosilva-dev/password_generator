@@ -9,8 +9,7 @@ body {
 }
 
 main{
-    border-radius: 10px;
-    max-width: 480px;
+    max-width: 780px;
     margin: 0 auto;
 }
 
@@ -222,3 +221,15 @@ main{
 .subimit button:hover {
     background-color: #9b51e0;
 }
+
+@media only screen and (max-width: 420px) {
+    .password {
+      padding: 1rem;
+    }
+    .password .text input {
+      font-size: 1rem;
+    }
+    .password .actions img {
+      width: 24px;
+    }
+  }

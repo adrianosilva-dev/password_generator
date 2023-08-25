@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="security-indicator">
-                <div id="security-indicator-bar" class="bar safe">
+                <div id="security-indicator-bar" class="bar">
                 </div>
             </div>
         </section>
@@ -125,11 +125,34 @@
 
             // funão de ajuste da barra de acordo com o "nivel" de segurança da senha (bar adjustment function according to password security "level")
             function calculateQuality () {
-                const percent = Math.round((passwordRange / 16)*15 
-                + (upperCaseCheckEl.checked ? 15 : 0)
-                + (numberCaseCheckEl.checked ? 30 : 0)
-                + (symbolsCaseCheckEl.checked ? 40 : 0))
+                // nivel da barra de acordo com a porcentagem (bar level according to percentage)
+                const percent = Math.round((passwordRange / 16)*30 
+                + (upperCaseCheckEl.checked ? 10 : 0)
+                + (numberCaseCheckEl.checked ? 25 : 0)
+                + (symbolsCaseCheckEl.checked ? 35 : 0))
                 securityIndicatorBarEL.style.width = `${percent}%`
+
+                // selecionando o visual de acordo com o nivel de segurança "porcentagem" definida, incluindo e removendo classes css (selecting the visual according to the defined "percentage" security level, including and removing css classes)
+                if (percent > 69) {
+                    securityIndicatorBarEL.classList.remove("critical")
+                    securityIndicatorBarEL.classList.remove("warning")
+                    securityIndicatorBarEL.classList.add("safe")
+                } else if (percent > 49) {
+                    securityIndicatorBarEL.classList.remove("critical")
+                    securityIndicatorBarEL.classList.remove("safe")
+                    securityIndicatorBarEL.classList.add("warning")
+                } else {
+                    securityIndicatorBarEL.classList.remove("warning")
+                    securityIndicatorBarEL.classList.remove("safe")
+                    securityIndicatorBarEL.classList.add("critical")
+                }
+
+                if (percent >= 100) {
+                    securityIndicatorBarEL.classList.add("completed")
+                } else {
+                    securityIndicatorBarEL.classList.remove("completed")
+                }
+
             }
 
         // função de copiar o password (password copy function)
@@ -156,6 +179,7 @@
         // copyActionButton.addEventListener("click", copy)
         document.querySelector("#copy2").addEventListener("click", copy)
         document.querySelector("#copyButton").addEventListener("click", copy)
+        document.querySelector("#renew").addEventListener("click", generatePassword)
         
         // chamando a função de gerar password (calling the generate function password)
         generatePassword()
